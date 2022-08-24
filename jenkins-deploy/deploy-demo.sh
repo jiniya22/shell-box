@@ -3,7 +3,6 @@ Jenkins를 이용하여 Spring Boot 앱을 Build한 후,
 Jenkins가 설치된 서버에서 바로 deploy하는 예제
 END
 
-export BUILD_ID=dontKillMe
 JENKINS_HOME=/var/lib/jenkins
 pid=$(ps -eaf | grep demo.jar | grep -v "grep" | awk '{print $2}')
 
@@ -39,5 +38,5 @@ if [ -e demo.jar ]; then
 fi
 
 cp $JENKINS_HOME/workspace/demo/target/demo.jar demo.jar
-nohup  java -jar demo.jar 2>> /dev/null >> /dev/null &
+BUILD_ID=dontKillMe nohup java -jar demo.jar 2>> /dev/null >> /dev/null &
 echo $!
